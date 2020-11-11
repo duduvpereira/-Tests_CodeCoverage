@@ -15,5 +15,5 @@ install:
 before_install:
   - sudo apt-get -y install valgrind cppcheck
 script:
-  - make
+  - make all
 #  - make test
