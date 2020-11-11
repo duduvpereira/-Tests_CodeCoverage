@@ -81,7 +81,7 @@ GCC = gcc
 # This part modified by Eugenio Pacceli Reis da Fonseca
 # DCC/UFMG
 # Target rules
-all: app
+all: cppcheck cov valgrind adressSanitizer
 
 array.o:array.c
 	gcc -o $@ -c $<
@@ -116,7 +116,8 @@ cppcheck:
 	cppcheck array.c sort.c get_opt.c main.c
 
 valgrind:
-	valgrind --leak-check=full --show-leak-kinds=all ./app -a $m -n 10 -s random -P
+	valgrind --leak-check=full --show-leak-kinds=all ./app -a quick -n 10 -s random -P
+	#valgrind --leak-check=full --show-leak-kinds=all ./app -a $m -n 10 -s random -P
 
 adressSanitizer:
 	gcc -g -Wall -Wfatal-errors -fsanitize=address array.c sort.c get_opt.c main.c -o appAdress
