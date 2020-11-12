@@ -81,7 +81,7 @@ GCC = gcc
 # This part modified by Eugenio Pacceli Reis da Fonseca
 # DCC/UFMG
 # Target rules
-all: cppcheck cov valgrind adressSanitizer
+all: array.o sort.o get_opt.o main.o app cppcheck cov valgrind adressSanitizer
 
 array.o:array.c
 	gcc -o $@ -c $<
@@ -109,8 +109,8 @@ clean:
 	rm -f *.gcda
 
 cov:
-	$(GCC) $(GCCFLAGS) -fprofile-arcs -ftest-coverage -o appCov.cov array.c sort.c get_opt.c main.c
-	./appCov -a quick -n 10 -s random -P
+	$(GCC) $(GCCFLAGS) -fprofile-arcs -ftest-coverage -o testeCov array.c sort.c get_opt.c main.c
+	./testeCov -a quick -n 10 -s random -P
 
 cppcheck:
 	cppcheck array.c sort.c get_opt.c main.c
