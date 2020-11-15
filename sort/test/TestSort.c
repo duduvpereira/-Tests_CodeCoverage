@@ -29,33 +29,86 @@ TEST(sortFunction, TestsortFunction1)
 {
   // All of these should pass
   int i=0;
-  int size = 10;
-  int a[size];
-  int b[size];
+  //int size = 10;
+  //int a[size];
+  //int b[size];
 
-    sortFunction("quick", size, "random", &a);
+  const char *method[] = {"selection", "insertion", "shell", "quick", "heap", "merge"};
+  int size[] = {1, 3, 4, 7, 11, 15, 20};
 
+  const char *tipo[] = {"random", "ascending", "descending", "almost"};
 
-    printf("\n\n");
-    for(i=0; i<10; i++){
-        printf("%d ", a[i]);
+  int m,s,t = 0;
+  int *a, *b;
+  for(m=0;m<6;m++)
+  {
+    printf("\n");
+    for(t=0;t<4;t++)
+    {
+      printf("\n");
+      for(s=0;s<7;s++)
+      {
+        //printf("000000000000\n");
+        printf("\nMetodo: %s", method[m]);
+        printf("\nTipo: %s", tipo[t]);
+        printf("\nSize: %d\n", size[s]);
+        a = (int*)malloc(sizeof(int)*size[s]);
+        b = (int*)malloc(sizeof(int)*size[s]);
+        //printf("aaaaaaa\n");
+        sortFunction(method[m], size[s], tipo[t], a);
+        //printf("%d\n", a[0]);
+        //printf("%d\n", a[1]);
+        //printf("\n\n");
+        //printf("bbbbbbb\n");
+        //printf("\n\n");
+        //printf("\n");
+        printf("\nOrdenado pela Funcao fornecida:\n");
+        for(i=0; i<size[s]; i++){
+            printf("%d ", a[i]);
+        }
+        //printf("\n");
+        for(i=0; i<size[s]; i++){
+          b[i] = a[i];
+        }
+        //printf("");
+
+        ///printf("ccccccccc\n" );
+        qsort(b, size[s], sizeof(int), cmpfunc);
+
+        printf("\nVetor ordenado:\n");
+        for(i=0; i<size[s]; i++){
+            printf("%d ", b[i]);
+        }
+        printf("\n");
+        //printf("ddddddddddd\n");
+        TEST_ASSERT_EQUAL_INT_ARRAY(b, a, size[s]);
+        //printf("eeeeeeeeeeeee\n");
+        free(a);
+        free(b);
+
+      }
+      printf("\n");
     }
+    printf("\n");
+  }
 
-    for(i=0; i<size; i++){
-        b[i] = a[i];
-    }
+    //for(i=0; i<10; i++){
+      //  printf("%d ", a[i]);
+    //}
 
-    qsort(b, 10, sizeof(int), cmpfunc);
-    printf("\n\n");
-    for(i=0; i<size; i++){
-        printf("%d ", b[i]);
-    }
+    //for(i=0; i<size; i++){
+      //  b[i] = a[i];
+    //}
 
-    TEST_ASSERT_EQUAL_INT_ARRAY(b, a, size);
+    //for(i=0; i<size; i++){
+      //  printf("%d ", b[i]);
+    //}
+
+    //TEST_ASSERT_EQUAL_INT_ARRAY(b, a, size);
 }
 
-TEST(sortFunction, TestsortFunction2)
-{
+//TEST(sortFunction, TestsortFunction2)
+//{
   // This test will fail
   //TEST_ASSERT_EQUAL(1, Identifier2(1,2));
-}
+//}

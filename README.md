@@ -1,3 +1,16 @@
+Ao executar o make ele irá rodar uma bateria de testes com a ferramenta Unity e logo após irá compilar e executar o programa normalmente, rodar o CPPcheck, o GCov, Valgrind e AddressSanitizer com parâmetros fixos.
+
+Para executar o Valgrind ou AddressSanitizer com parâmetros específicos, basta executar os comandos:
+make valgrind m=<método> s=<tamanho> t=<tipo>
+make addressSanitizer m=<método> s=<tamanho> t=<tipo>
+
+O make clean irá remover as seguintes extensões de arquivos:
+*.o, app, *.cov, *.gcno,  *.gcda
+
+
+
+
+
 Travis Identifier [![License][license-img]][license-url]
 =
 Simple Travis example for C using GCC compiler based on the identifier program presented by Delamaro et al. "Introdução ao Teste de Software". Elsevier. 2007.

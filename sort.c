@@ -120,9 +120,9 @@ void quick_sort(int array[], int left, int right) {
     }
 }
 
-void heap_sort(int array[], int n){
+/*void heap_sort(int array[], int n){
     int i = n/2, father, child, t;
-
+    printf("%d\n", i);
     for(;;) {
         if (i > 0) {
             i--;
@@ -156,6 +156,37 @@ void heap_sort(int array[], int n){
       	}
      	 array[father] = t;
    	}
+}
+*/
+void heap_sort(int a[], int n) {
+   int i = n / 2, pai, filho, t;
+   //printf("FIM\n");
+   while(1) {
+      if (i > 0) {
+          i--;
+          t = a[i];
+      } else {
+          n--;
+          if (n <= 0) return;
+          t = a[n];
+          a[n] = a[0];
+      }
+      pai = i;
+      filho = i * 2 + 1;
+      while (filho < n) {
+          if ((filho + 1 < n)  &&  (a[filho + 1] > a[filho]))
+              filho++;
+          if (a[filho] > t) {
+             a[pai] = a[filho];
+             pai = filho;
+             filho = pai * 2 + 1;
+          } else {
+             break;
+          }
+      }
+      a[pai] = t;
+   }
+
 }
 
 void top_down_merge(int* a,int begin,int end,int* b){
@@ -251,7 +282,7 @@ int* sort_array(int *array, int size, int method){
             start = clock();
             gpumerge_sort(array,size);
             end = clock();
-*/            
+*/
     }
     elapsed_time = (((double)(end-start))/CLOCKS_PER_SEC);
     return array;

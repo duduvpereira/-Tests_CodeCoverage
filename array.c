@@ -26,6 +26,10 @@ void ascending_array(int *array, int size) {
     for(i = 1; i <= size; i++) {
         array[i] = i;
     }
+    //for(i = 1; i <= size; i++) {
+      //printf("%d ", i);
+    //}
+    //printf("\n ");
 }
 
 /**
@@ -67,8 +71,9 @@ void almost_ordered_array(int *array, int size) {
  * @return int[]               Filled array
  */
 int* generate_array(int size, int organization) {
-    int* array;
-    array = (int*)malloc(size*sizeof(int));
+
+    int* array= (int*)malloc(size*sizeof(int));
+    //array = (int*)malloc(size*sizeof(int));
 
     if(array){
         switch(organization) {
@@ -86,5 +91,6 @@ int* generate_array(int size, int organization) {
             break;
         }
     }
+    printf("\n");
     return array;
 }

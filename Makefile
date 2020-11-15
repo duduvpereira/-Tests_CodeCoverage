@@ -72,7 +72,7 @@ ALL_LDFLAGS += $(addprefix -Xlinker ,$(EXTRA_LDFLAGS))
 
 #Flags GCOV
 GCCFLAGS = -g -Wall -Wfatal-errors
-ALL = identifier cov unity cppcheck valgrind adressSanitizer
+ALL = identifier cov unity cppcheck valgrind addressSanitizer
 GCC = gcc
 
 
@@ -81,7 +81,7 @@ GCC = gcc
 # This part modified by Eugenio Pacceli Reis da Fonseca
 # DCC/UFMG
 # Target rules
-all: array.o sort.o get_opt.o main.o app cppcheck cov valgrind adressSanitizer
+all: unity array.o sort.o get_opt.o main.o app cppcheck cov valgrind_make addressSanitizer_make
 
 array.o:array.c
 	gcc -o $@ -c $<
@@ -108,6 +108,7 @@ clean:
 	rm -f *.gcno
 	rm -f *.gcda
 
+
 cov:
 	$(GCC) $(GCCFLAGS) -fprofile-arcs -ftest-coverage -o testeCov array.c sort.c get_opt.c main.c
 	./testeCov -a quick -n 10 -s random -P
@@ -115,10 +116,17 @@ cov:
 cppcheck:
 	cppcheck array.c sort.c get_opt.c main.c
 
-valgrind:
+valgrind_make:
 	valgrind --leak-check=full --show-leak-kinds=all ./app -a quick -n 10 -s random -P
-	#valgrind --leak-check=full --show-leak-kinds=all ./app -a $m -n 10 -s random -P
+valgrind:
+	valgrind --leak-check=full --show-leak-kinds=all ./app -a $m -n $s -s $t -P
 
-adressSanitizer:
+addressSanitizer_make:
 	gcc -g -Wall -Wfatal-errors -fsanitize=address array.c sort.c get_opt.c main.c -o appAdress
 	./appAdress -a quick -n 10 -s random -P
+
+addressSanitizer:
+	./appAdress -a $m -n $s -s $t -P
+
+unity:
+	cd sort;pwd;make all;

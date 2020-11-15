@@ -120,42 +120,35 @@ void quick_sort(int array[], int left, int right) {
     }
 }
 
-void heap_sort(int array[], int n){
-    int i = n/2, father, child, t;
+void heap_sort(int a[], int n) {
+   int i = n / 2, pai, filho, t;
+   //printf("FIM\n");
+   while(1) {
+      if (i > 0) {
+          i--;
+          t = a[i];
+      } else {
+          n--;
+          if (n <= 0) return;
+          t = a[n];
+          a[n] = a[0];
+      }
+      pai = i;
+      filho = i * 2 + 1;
+      while (filho < n) {
+          if ((filho + 1 < n)  &&  (a[filho + 1] > a[filho]))
+              filho++;
+          if (a[filho] > t) {
+             a[pai] = a[filho];
+             pai = filho;
+             filho = pai * 2 + 1;
+          } else {
+             break;
+          }
+      }
+      a[pai] = t;
+   }
 
-    for(;;) {
-        if (i > 0) {
-            i--;
-            t = array[i];
-        }
-        else {
-            n--;
-            if (n == 0)
-               return;
-            t = array[n];
-            array[n] = array[0];
-        }
-
-        father = i;
-
-        //Compare with the left child
-        child = i*2;
-
-        while (child < n){
-            if ((child + 1 < n)  &&  (array[child + 1] > array[child])){
-              	child++;
-            	numberOfComparisons++;
-            }
-          	if (array[child] > t){
-             	numberOfComparisons++;
-             	array[father] = array[child];
-             	father = child;
-             	child = father*2 + 1;
-             	numberOfSwaps++;
-          	} else break;
-      	}
-     	 array[father] = t;
-   	}
 }
 
 void top_down_merge(int* a,int begin,int end,int* b){
@@ -225,7 +218,7 @@ int* sort_array(int *array, int size, int method){
 
         case QUICK:
             start = clock();
-            quick_sort(array, 0, size);
+            quick_sort(array, 0, size-1);
             end = clock();
         break;
 
@@ -251,7 +244,7 @@ int* sort_array(int *array, int size, int method){
             start = clock();
             gpumerge_sort(array,size);
             end = clock();
-*/            
+*/
     }
     elapsed_time = (((double)(end-start))/CLOCKS_PER_SEC);
     return array;
