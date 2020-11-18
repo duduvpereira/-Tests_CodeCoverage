@@ -43,7 +43,7 @@ TEST(sortFunction, TestsortFunction1)
     for(t=0;t<4;t++)
     {
       printf("\n");
-      for(s=0;s<7;s++)
+      for(s=0;s<9;s++)
       {
         //printf("000000000000\n");
         printf("\nMetodo: %s", method[m]);
