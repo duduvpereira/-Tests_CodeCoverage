@@ -23,7 +23,7 @@ void random_array(int *array, int size) {
  */
 void ascending_array(int *array, int size) {
     int i;
-    for(i = 1; i <= size; i++) {
+    for(i = 1; i < size; i++) {
         array[i] = i;
     }
 }

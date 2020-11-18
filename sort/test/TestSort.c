@@ -29,12 +29,9 @@ TEST(sortFunction, TestsortFunction1)
 {
   // All of these should pass
   int i=0;
-  //int size = 10;
-  //int a[size];
-  //int b[size];
 
   const char *method[] = {"selection", "insertion", "shell", "quick", "heap", "merge"};
-  int size[] = {1, 3, 4, 7, 11, 15, 20};
+  int size[] = {1, 3, 4, 7, 10, 11, 15, 20, 25};
 
   const char *tipo[] = {"random", "ascending", "descending", "almost"};
 
@@ -56,12 +53,7 @@ TEST(sortFunction, TestsortFunction1)
         b = (int*)malloc(sizeof(int)*size[s]);
         //printf("aaaaaaa\n");
         sortFunction(method[m], size[s], tipo[t], a);
-        //printf("%d\n", a[0]);
-        //printf("%d\n", a[1]);
-        //printf("\n\n");
-        //printf("bbbbbbb\n");
-        //printf("\n\n");
-        //printf("\n");
+
         printf("\nOrdenado pela Funcao fornecida:\n");
         for(i=0; i<size[s]; i++){
             printf("%d ", a[i]);
@@ -92,19 +84,7 @@ TEST(sortFunction, TestsortFunction1)
     printf("\n");
   }
 
-    //for(i=0; i<10; i++){
-      //  printf("%d ", a[i]);
-    //}
 
-    //for(i=0; i<size; i++){
-      //  b[i] = a[i];
-    //}
-
-    //for(i=0; i<size; i++){
-      //  printf("%d ", b[i]);
-    //}
-
-    //TEST_ASSERT_EQUAL_INT_ARRAY(b, a, size);
 }
 
 //TEST(sortFunction, TestsortFunction2)
